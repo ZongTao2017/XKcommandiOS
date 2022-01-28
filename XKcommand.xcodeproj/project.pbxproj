@@ -11,6 +11,19 @@
 		DC59C44B274DA5470018F493 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC59C44A274DA5470018F493 /* ContentView.swift */; };
 		DC59C44D274DA54B0018F493 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC59C44C274DA54B0018F493 /* Assets.xcassets */; };
 		DC59C450274DA54B0018F493 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC59C44F274DA54B0018F493 /* Preview Assets.xcassets */; };
+		DC80CEFF279B63D300569188 /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80CEFE279B63D300569188 /* ControlButton.swift */; };
+		DC80CF01279B64E300569188 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80CF00279B64E300569188 /* ControlView.swift */; };
+		DC80CF0327A3230C00569188 /* CustomizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80CF0227A3230A00569188 /* CustomizeView.swift */; };
+		DC80CF0527A32CDF00569188 /* EditButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80CF0427A32CDF00569188 /* EditButtonView.swift */; };
+		DC80CF0727A32CED00569188 /* EditSensorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80CF0627A32CED00569188 /* EditSensorView.swift */; };
+		DC80CF0927A32CFB00569188 /* EditChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80CF0827A32CFB00569188 /* EditChannelView.swift */; };
+		DC80CF0B27A32D0900569188 /* EditSystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80CF0A27A32D0900569188 /* EditSystemView.swift */; };
+		DC80CF0D27A336D300569188 /* SelectButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80CF0C27A336D300569188 /* SelectButtonView.swift */; };
+		DC80CF0F27A34DC100569188 /* SelectButon.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80CF0E27A34DC100569188 /* SelectButon.swift */; };
+		DC80CF1127A3744C00569188 /* SelectSensorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80CF1027A3744C00569188 /* SelectSensorView.swift */; };
+		DC80CF1327A3821800569188 /* impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC80CF1227A3821800569188 /* impact.ttf */; };
+		DC80CF1727A389A100569188 /* SelectChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC80CF1627A389A100569188 /* SelectChannelView.swift */; };
+		DCD305792797A4AD00AB1EE7 /* DeviceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD305782797A4AD00AB1EE7 /* DeviceList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +32,19 @@
 		DC59C44A274DA5470018F493 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DC59C44C274DA54B0018F493 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC59C44F274DA54B0018F493 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DC80CEFE279B63D300569188 /* ControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButton.swift; sourceTree = "<group>"; };
+		DC80CF00279B64E300569188 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
+		DC80CF0227A3230A00569188 /* CustomizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeView.swift; sourceTree = "<group>"; };
+		DC80CF0427A32CDF00569188 /* EditButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonView.swift; sourceTree = "<group>"; };
+		DC80CF0627A32CED00569188 /* EditSensorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSensorView.swift; sourceTree = "<group>"; };
+		DC80CF0827A32CFB00569188 /* EditChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChannelView.swift; sourceTree = "<group>"; };
+		DC80CF0A27A32D0900569188 /* EditSystemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSystemView.swift; sourceTree = "<group>"; };
+		DC80CF0C27A336D300569188 /* SelectButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectButtonView.swift; sourceTree = "<group>"; };
+		DC80CF0E27A34DC100569188 /* SelectButon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectButon.swift; sourceTree = "<group>"; };
+		DC80CF1027A3744C00569188 /* SelectSensorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSensorView.swift; sourceTree = "<group>"; };
+		DC80CF1227A3821800569188 /* impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = impact.ttf; sourceTree = "<group>"; };
+		DC80CF1627A389A100569188 /* SelectChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectChannelView.swift; sourceTree = "<group>"; };
+		DCD305782797A4AD00AB1EE7 /* DeviceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +77,23 @@
 		DC59C447274DA5470018F493 /* XKcommand */ = {
 			isa = PBXGroup;
 			children = (
+				DC80CF1427A3822D00569188 /* Fonts */,
 				DC59C448274DA5470018F493 /* XKcommandApp.swift */,
 				DC59C44A274DA5470018F493 /* ContentView.swift */,
+				DCD305782797A4AD00AB1EE7 /* DeviceList.swift */,
+				DC80CF00279B64E300569188 /* ControlView.swift */,
+				DC80CEFE279B63D300569188 /* ControlButton.swift */,
+				DC80CF0227A3230A00569188 /* CustomizeView.swift */,
 				DC59C44C274DA54B0018F493 /* Assets.xcassets */,
 				DC59C44E274DA54B0018F493 /* Preview Content */,
+				DC80CF0C27A336D300569188 /* SelectButtonView.swift */,
+				DC80CF0427A32CDF00569188 /* EditButtonView.swift */,
+				DC80CF0E27A34DC100569188 /* SelectButon.swift */,
+				DC80CF1027A3744C00569188 /* SelectSensorView.swift */,
+				DC80CF0627A32CED00569188 /* EditSensorView.swift */,
+				DC80CF1627A389A100569188 /* SelectChannelView.swift */,
+				DC80CF0827A32CFB00569188 /* EditChannelView.swift */,
+				DC80CF0A27A32D0900569188 /* EditSystemView.swift */,
 			);
 			path = XKcommand;
 			sourceTree = "<group>";
@@ -65,6 +104,14 @@
 				DC59C44F274DA54B0018F493 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DC80CF1427A3822D00569188 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DC80CF1227A3821800569188 /* impact.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +174,7 @@
 			files = (
 				DC59C450274DA54B0018F493 /* Preview Assets.xcassets in Resources */,
 				DC59C44D274DA54B0018F493 /* Assets.xcassets in Resources */,
+				DC80CF1327A3821800569188 /* impact.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +185,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCD305792797A4AD00AB1EE7 /* DeviceList.swift in Sources */,
+				DC80CF0927A32CFB00569188 /* EditChannelView.swift in Sources */,
 				DC59C44B274DA5470018F493 /* ContentView.swift in Sources */,
+				DC80CF0727A32CED00569188 /* EditSensorView.swift in Sources */,
+				DC80CF0D27A336D300569188 /* SelectButtonView.swift in Sources */,
+				DC80CF0527A32CDF00569188 /* EditButtonView.swift in Sources */,
 				DC59C449274DA5470018F493 /* XKcommandApp.swift in Sources */,
+				DC80CEFF279B63D300569188 /* ControlButton.swift in Sources */,
+				DC80CF1727A389A100569188 /* SelectChannelView.swift in Sources */,
+				DC80CF0F27A34DC100569188 /* SelectButon.swift in Sources */,
+				DC80CF0B27A32D0900569188 /* EditSystemView.swift in Sources */,
+				DC80CF0327A3230C00569188 /* CustomizeView.swift in Sources */,
+				DC80CF01279B64E300569188 /* ControlView.swift in Sources */,
+				DC80CF1127A3744C00569188 /* SelectSensorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +332,7 @@
 				DEVELOPMENT_TEAM = 589BPG6583;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = XKcommand/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -301,6 +362,7 @@
 				DEVELOPMENT_TEAM = 589BPG6583;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = XKcommand/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
