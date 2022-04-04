@@ -8,20 +8,22 @@
 import SwiftUI
 
 struct SelectChannelView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         ZStack {
-            backgroundColor.ignoresSafeArea()
+            mainBackgroundColor.ignoresSafeArea()
             VStack(alignment: .leading, spacing:0) {
                 Spacer()
                     .frame(minHeight: 10, idealHeight: 10, maxHeight: 10)
                     .fixedSize()
-                VStack(alignment: .leading, spacing:0) {
+                VStack(alignment: .leading, spacing: 0) {
                     Group {
-                        NavigationLink(destination: EditChannelView()) {
+                        NavigationLink(destination: EditChannelView(channelInfo: DeviceManager.default.getChannelInfo(1))) {
                             HStack {
                                 Text("Channel 1")
                                     .foregroundColor(.white)
-                                    .font(.system(size: 20.0))
+                                    .font(.system(size: 18.0))
                                     .padding(.leading, 20)
                                 Spacer()
                                 Image(systemName: "chevron.right")
@@ -33,11 +35,11 @@ struct SelectChannelView: View {
                             .padding(.leading, 20)
                     }
                     Group {
-                        NavigationLink(destination: EditChannelView()) {
+                        NavigationLink(destination: EditChannelView(channelInfo: DeviceManager.default.getChannelInfo(2))) {
                             HStack {
                                 Text("Channel 2")
                                     .foregroundColor(.white)
-                                    .font(.system(size: 20.0))
+                                    .font(.system(size: 18.0))
                                     .padding(.leading, 20)
                                 Spacer()
                                 Image(systemName: "chevron.right")
@@ -49,11 +51,11 @@ struct SelectChannelView: View {
                             .padding(.leading, 20)
                     }
                     Group {
-                        NavigationLink(destination: EditChannelView()) {
+                        NavigationLink(destination: EditChannelView(channelInfo: DeviceManager.default.getChannelInfo(3))) {
                             HStack {
                                 Text("Channel 3")
                                     .foregroundColor(.white)
-                                    .font(.system(size: 20.0))
+                                    .font(.system(size: 18.0))
                                     .padding(.leading, 20)
                                 Spacer()
                                 Image(systemName: "chevron.right")
@@ -65,11 +67,11 @@ struct SelectChannelView: View {
                             .padding(.leading, 20)
                     }
                     Group {
-                        NavigationLink(destination: EditChannelView()) {
+                        NavigationLink(destination: EditChannelView(channelInfo: DeviceManager.default.getChannelInfo(4))) {
                             HStack {
                                 Text("Channel 4")
                                     .foregroundColor(.white)
-                                    .font(.system(size: 20.0))
+                                    .font(.system(size: 18.0))
                                     .padding(.leading, 20)
                                 Spacer()
                                 Image(systemName: "chevron.right")
@@ -81,11 +83,11 @@ struct SelectChannelView: View {
                             .padding(.leading, 20)
                     }
                     Group {
-                        NavigationLink(destination: EditChannelView()) {
+                        NavigationLink(destination: EditChannelView(channelInfo: DeviceManager.default.getChannelInfo(5))) {
                             HStack {
                                 Text("Channel 5")
                                     .foregroundColor(.white)
-                                    .font(.system(size: 20.0))
+                                    .font(.system(size: 18.0))
                                     .padding(.leading, 20)
                                 Spacer()
                                 Image(systemName: "chevron.right")
@@ -97,11 +99,11 @@ struct SelectChannelView: View {
                             .padding(.leading, 20)
                     }
                     Group {
-                        NavigationLink(destination: EditChannelView()) {
+                        NavigationLink(destination: EditChannelView(channelInfo: DeviceManager.default.getChannelInfo(6))) {
                             HStack {
                                 Text("Channel 6")
                                     .foregroundColor(.white)
-                                    .font(.system(size: 20.0))
+                                    .font(.system(size: 18.0))
                                     .padding(.leading, 20)
                                 Spacer()
                                 Image(systemName: "chevron.right")
@@ -113,11 +115,11 @@ struct SelectChannelView: View {
                             .padding(.leading, 20)
                     }
                     Group {
-                        NavigationLink(destination: EditChannelView()) {
+                        NavigationLink(destination: EditChannelView(channelInfo: DeviceManager.default.getChannelInfo(7))) {
                             HStack {
                                 Text("Channel 7")
                                     .foregroundColor(.white)
-                                    .font(.system(size: 20.0))
+                                    .font(.system(size: 18.0))
                                     .padding(.leading, 20)
                                 Spacer()
                                 Image(systemName: "chevron.right")
@@ -129,11 +131,11 @@ struct SelectChannelView: View {
                             .padding(.leading, 20)
                     }
                     Group {
-                        NavigationLink(destination: EditChannelView()) {
+                        NavigationLink(destination: EditChannelView(channelInfo: DeviceManager.default.getChannelInfo(8))) {
                             HStack {
                                 Text("Channel 8")
                                     .foregroundColor(.white)
-                                    .font(.system(size: 20.0))
+                                    .font(.system(size: 18.0))
                                     .padding(.leading, 20)
                                 Spacer()
                                 Image(systemName: "chevron.right")
@@ -154,11 +156,19 @@ struct SelectChannelView: View {
                 Spacer()
             }
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("Select Channel")
                         .font(.title3)
                         .foregroundColor(.white)
+                }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }){
+                        Image(systemName: "chevron.backward")
+                    }
                 }
             }
         }

@@ -8,13 +8,24 @@
 import SwiftUI
 
 struct CustomizeView: View {
+    @State var deviceInfo: DeviceInfo = DeviceManager.default.getActiveDevice()
+    
     var body: some View {
         ZStack {
-            backgroundColor.ignoresSafeArea()
+            mainBackgroundColor.ignoresSafeArea()
             VStack {
-                Spacer()
-                    .frame(minHeight: 10, idealHeight: 10, maxHeight: 10)
-                    .fixedSize()
+                VStack(spacing: 0) {
+                    Spacer()
+                    if deviceInfo.state == DeviceState.offline {
+                        Text("Device not connected")
+                            .frame(height: 30)
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(Color.white)
+                            .background(Color.red)
+                    }
+                }
+                .frame(height: 60)
+                .contentShape(Rectangle())
                 NavigationLink(destination: SelectButtonView()) {
                     HStack {
                         Image("Controller_Edit_Icon")
@@ -22,7 +33,7 @@ struct CustomizeView: View {
                         VStack(alignment: .leading) {
                             Text("Button")
                                 .foregroundColor(.white)
-                                .font(.system(size: 20.0))
+                                .font(.system(size: 18.0))
                             Text("Button actions & linked channels")
                                 .foregroundColor(.gray)
                                 .font(.system(size: 16.0))
@@ -40,7 +51,7 @@ struct CustomizeView: View {
                         VStack(alignment: .leading) {
                             Text("Sensor Wire")
                                 .foregroundColor(.white)
-                                .font(.system(size: 20.0))
+                                .font(.system(size: 18.0))
                             Text("Sensor actions & linked channels")
                                 .foregroundColor(.gray)
                                 .font(.system(size: 16.0))
@@ -60,7 +71,7 @@ struct CustomizeView: View {
                         VStack(alignment: .leading) {
                             Text("Output Channel")
                                 .foregroundColor(.white)
-                                .font(.system(size: 20.0))
+                                .font(.system(size: 18.0))
                             Text("Channel name & max output limit")
                                 .foregroundColor(.gray)
                                 .font(.system(size: 16.0))
@@ -73,14 +84,14 @@ struct CustomizeView: View {
                         .background(lightGrayBackgroundColor)
                         .padding(.top)
                 }
-                NavigationLink(destination: EditSystemView()) {
+                NavigationLink(destination: EditSystemView(systemInfo: DeviceManager.default.getSystemInfo())) {
                     HStack {
                         Image("System_Edit_Icon")
                             .frame(width: 60, height: 60)
                         VStack(alignment: .leading) {
                             Text("System")
                                 .foregroundColor(.white)
-                                .font(.system(size: 20.0))
+                                .font(.system(size: 18.0))
                             Text("Controller setup")
                                 .foregroundColor(.gray)
                                 .font(.system(size: 16.0))
@@ -96,6 +107,8 @@ struct CustomizeView: View {
                 }
                 Spacer()
             }
+        }.onReceive(deviceNotif) { (notif) in
+            deviceInfo = DeviceManager.default.getActiveDevice()
         }
     }
 }

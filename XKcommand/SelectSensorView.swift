@@ -8,19 +8,21 @@
 import SwiftUI
 
 struct SelectSensorView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         ZStack {
-            backgroundColor.ignoresSafeArea()
+            mainBackgroundColor.ignoresSafeArea()
             VStack {
                 Spacer()
                     .frame(minHeight: 10, idealHeight: 10, maxHeight: 10)
                     .fixedSize()
                 VStack(alignment: .leading, spacing:0) {
-                    NavigationLink(destination: EditSensorView()) {
+                    NavigationLink(destination: EditSensorView(sensorInfo: DeviceManager.default.getSensorInfo(1), systemInfo: DeviceManager.default.getSystemInfo())) {
                         HStack {
-                            Text("Sensor Name 1")
+                            Text(DeviceManager.default.getSensorInfo(1).sensorName)
                                 .foregroundColor(.white)
-                                .font(.system(size: 20.0))
+                                .font(.system(size: 18.0))
                                 .padding(.leading, 20)
                             Spacer()
                             Image(systemName: "chevron.right")
@@ -30,11 +32,11 @@ struct SelectSensorView: View {
                     }
                     ExDivider()
                         .padding(.leading, 20)
-                    NavigationLink(destination: EditSensorView()) {
+                    NavigationLink(destination: EditSensorView(sensorInfo: DeviceManager.default.getSensorInfo(2), systemInfo: DeviceManager.default.getSystemInfo())) {
                         HStack {
-                            Text("Sensor Name 2")
+                            Text(DeviceManager.default.getSensorInfo(2).sensorName)
                                 .foregroundColor(.white)
-                                .font(.system(size: 20.0))
+                                .font(.system(size: 18.0))
                                 .padding(.leading, 20)
                             Spacer()
                             Image(systemName: "chevron.right")
@@ -44,11 +46,11 @@ struct SelectSensorView: View {
                     }
                     ExDivider()
                         .padding(.leading, 20)
-                    NavigationLink(destination: EditSensorView()) {
+                    NavigationLink(destination: EditSensorView(sensorInfo: DeviceManager.default.getSensorInfo(3), systemInfo: DeviceManager.default.getSystemInfo())) {
                         HStack {
-                            Text("Sensor Name 3")
+                            Text(DeviceManager.default.getSensorInfo(3).sensorName)
                                 .foregroundColor(.white)
-                                .font(.system(size: 20.0))
+                                .font(.system(size: 18.0))
                                 .padding(.leading, 20)
                             Spacer()
                             Image(systemName: "chevron.right")
@@ -63,19 +65,21 @@ struct SelectSensorView: View {
                 Spacer()
             }
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("Select Sensor")
                         .font(.title3)
                         .foregroundColor(.white)
                 }
+                ToolbarItem(placement: .navigationBarLeading) {
+                        Button(action: {
+                            presentationMode.wrappedValue.dismiss()
+                        }){
+                            Image(systemName: "chevron.backward")
+                        }
+                    }
             }
         }
-    }
-}
-
-struct SelectSensorView_Previews: PreviewProvider {
-    static var previews: some View {
-        SelectSensorView()
     }
 }

@@ -8,30 +8,36 @@
 import SwiftUI
 
 struct EditChannelView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @StateObject var channelInfo: ChannelInfo
+    
     var body: some View {
         ZStack {
-            backgroundColor.ignoresSafeArea()
+            mainBackgroundColor.ignoresSafeArea()
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     Spacer()
                         .frame(minHeight: 10, idealHeight: 10, maxHeight: 10)
                         .fixedSize()
                     Group {
-                        HStack {
-                            Text("Channel Name")
-                                .foregroundColor(.white)
-                                .font(.system(size: 20.0))
-                                .padding(.leading, 20)
-                            Spacer()
-                            Text("Channel Name 1")
-                                .foregroundColor(.gray)
-                                .font(.system(size: 20.0))
-                            Image(systemName: "chevron.right")
-                                .foregroundColor(.gray)
-                                .padding(.trailing)
+                        NavigationLink(destination: EditChannelNameView(channelInfo: channelInfo, name: channelInfo.channelName)) {
+                            HStack {
+                                Text("Channel Name")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 18.0))
+                                    .padding(.leading, 20)
+                                Spacer()
+                                Text(channelInfo.channelName.isEmpty ? String(format: "Channel %d", channelInfo.channelId) : channelInfo.channelName)
+                                    .frame(maxWidth: 100, alignment: .trailing)
+                                    .foregroundColor(.gray)
+                                    .font(.system(size: 18.0))
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.gray)
+                                    .padding(.trailing)
+                            }
+                            .frame(height: 50)
+                            .background(lightGrayBackgroundColor)
                         }
-                        .frame(height: 50)
-                        .background(lightGrayBackgroundColor)
                     }
                     Group {
                         Text("PROJECTION")
@@ -42,17 +48,33 @@ struct EditChannelView: View {
                         HStack {
                             Text("Max output current")
                                 .foregroundColor(.white)
-                                .font(.system(size: 20.0))
+                                .font(.system(size: 18.0))
                                 .padding(.leading, 20)
                             Spacer()
-                            Image(systemName:"minus")
-                                .foregroundColor(.blue)
-                            Text("9A")
+                            Button(action: {
+                                withAnimation {
+                                    if channelInfo.maxOutputCurrent > 3 {
+                                        channelInfo.maxOutputCurrent -= 1
+                                    }
+                                }
+                            }) {
+                                Image(systemName:"minus")
+                                    .foregroundColor(channelInfo.maxOutputCurrent <= 3 ? .gray : .blue)
+                                    .frame(width: 30, height: 30)
+                            }.frame(width: 30, height: 30)
+                            Text(String(channelInfo.maxOutputCurrent) + "A")
                                 .foregroundColor(.white)
-                            Image(systemName:"plus")
-                                .foregroundColor(.blue)
-                                .foregroundColor(.blue)
-                                .padding(.trailing)
+                            Button(action: {
+                                withAnimation {
+                                    if channelInfo.maxOutputCurrent < 20 {
+                                        channelInfo.maxOutputCurrent += 1
+                                    }
+                                }
+                            }) {
+                                Image(systemName:"plus")
+                                    .foregroundColor(channelInfo.maxOutputCurrent >= 20 ? .gray : .blue)
+                                    .frame(width: 30, height: 30)
+                            }.frame(width: 30, height: 30).padding(.trailing)
                         }
                         .frame(height: 50)
                         .background(lightGrayBackgroundColor)
@@ -66,20 +88,23 @@ struct EditChannelView: View {
                         .padding(.top, 10)
                 }
                 .navigationBarTitleDisplayMode(.inline)
+                .navigationBarBackButtonHidden(true)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
-                        Text("Channel 1")
+                        Text("Channel " + String(channelInfo.channelId))
                             .font(.title3)
                             .foregroundColor(.white)
+                    }
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button(action: {
+                            DeviceManager.default.sendCommandChannels(channelInfo)
+                            presentationMode.wrappedValue.dismiss()
+                        }){
+                            Image(systemName: "chevron.backward")
+                        }
                     }
                 }
             }
         }
-    }
-}
-
-struct EditChannelView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditChannelView()
     }
 }

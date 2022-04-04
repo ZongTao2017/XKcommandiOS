@@ -1,73 +1,104 @@
 //
-//  ControlView.swift
+//  ControlDeviceView.swift
 //  XKcommand
 //
-//  Created by Tao Zong on 1/21/22.
+//  Created by Tao Zong on 3/27/22.
 //
 
 import SwiftUI
 
-let BUTTON_SIZE: CGFloat = 170
-let PADDING: CGFloat = 25
-let POWER_SIZE: CGFloat = 60
-
 struct ControlView: View {
+    @State var offset: CGFloat = 0
+    @State var devices: [DeviceInfo] = [DeviceInfo]()
+    @State var showArrows = true
+    
     var body: some View {
-        VStack {
-            Spacer()
-                .frame(minHeight: 10, idealHeight: 70, maxHeight: 70)
-                .fixedSize()
-            HStack {
-                ControlButton(buttonId: .constant(1))
-                    .frame(width: BUTTON_SIZE, height: BUTTON_SIZE)
-                ControlButton(buttonId: .constant(2))
-                    .frame(width: BUTTON_SIZE, height: BUTTON_SIZE)
+        GeometryReader { geometry in
+            ZStack(alignment: .leading) {
+                if offset < 0 && showArrows {
+                    Button(action: {
+                        withAnimation {
+                            offset += geometry.size.width
+                            let index: Int = Int(-offset / geometry.size.width)
+                            DeviceManager.default.setSelectedDevice(newId: devices[index].uuid)
+                        }
+                    }) {
+                        Image("triangle_left")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 12)
+                    }.frame(width: 30)
+                }
+                if offset > CGFloat((1 - devices.count)) * geometry.size.width && showArrows {
+                    Button(action: {
+                        withAnimation {
+                            offset -= geometry.size.width
+                            let index: Int = Int(-offset / geometry.size.width)
+                            DeviceManager.default.setSelectedDevice(newId: devices[index].uuid)
+                        }
+                    }) {
+                        Image("triangle_right")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 12)
+                    }
+                    .frame(width: 30)
+                    .offset(x: geometry.size.width - 30)
+                }
+                HStack(spacing: 0) {
+                    ForEach(0..<devices.count, id: \.self) { i in
+                        ControlDeviceView(deviceInfo: devices[i], systemInfo: devices[i].systemInfo)
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                    }
+                }.offset(x: offset)
             }
-            HStack {
-                ControlButton(buttonId: .constant(3))
-                    .frame(width: BUTTON_SIZE, height: BUTTON_SIZE)
-                    .padding(.top, -PADDING)
-                ControlButton(buttonId: .constant(4))
-                    .frame(width: BUTTON_SIZE, height: BUTTON_SIZE)
-                    .padding(.top, -PADDING)
+            .onAppear() {
+                updateDevices(width: geometry.size.width)
             }
-            ZStack {
-                Image("Power_base_unpressed").frame(width: POWER_SIZE, height: POWER_SIZE)
-                    .padding(.top, -POWER_SIZE/2-PADDING/2)
-                    .padding(.bottom, -POWER_SIZE/2)
-                Image("power").frame(width: POWER_SIZE, height: POWER_SIZE)
-                    .padding(.top, -POWER_SIZE/2-PADDING/2)
-                    .padding(.bottom, -POWER_SIZE/2)
+            .onReceive(deviceNotif) { (notif) in
+                updateDevices(width: geometry.size.width)
+                
+            }.onReceive(enableNotif) { (notif) in
+                showArrows = true
             }
-            
-            HStack {
-                ControlButton(buttonId: .constant(5))
-                    .frame(width: BUTTON_SIZE, height: BUTTON_SIZE)
-                    .padding(.top, -PADDING)
-                ControlButton(buttonId: .constant(6))
-                    .frame(width: BUTTON_SIZE, height: BUTTON_SIZE)
-                    .padding(.top, -PADDING)
+            .onReceive(disableNotif) { (notif) in
+                showArrows = false
             }
-            HStack {
-                ControlButton(buttonId: .constant(7))
-                    .frame(width: BUTTON_SIZE, height: BUTTON_SIZE)
-                    .padding(.top, -PADDING)
-                ControlButton(buttonId: .constant(8))
-                    .frame(width: BUTTON_SIZE, height: BUTTON_SIZE)
-                    .padding(.top, -PADDING)
-            }
-            Image("System_Status_base_pressed")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: BUTTON_SIZE*2-PADDING)
-                .padding(.top, -PADDING/3)
-            Spacer()
         }
     }
-}
-
-struct ControlView_Previews: PreviewProvider {
-    static var previews: some View {
-        ControlView()
+    
+    func updateDevices(width: CGFloat) {
+        let pairedDevices = DeviceManager.default.getPairedDevices()
+        var offlineDevices = [DeviceInfo]()
+        for device in pairedDevices {
+            if device.state == DeviceState.offline {
+                if device.state == DeviceState.offline {
+                    if !offlineDevices.contains(device) {
+                        offlineDevices.append(device)
+                    }
+                    
+                } else {
+                    if !devices.contains(device) {
+                        devices.append(device)
+                    }
+                }
+            }
+        }
+        devices.removeAll(where: {!pairedDevices.contains($0)})
+        if devices.isEmpty {
+            if !offlineDevices.isEmpty {
+                devices.append(offlineDevices[0])
+            } else {
+                devices.append(DeviceManager.default.getActiveDevice())
+            }
+            
+        }
+        for (index, device) in devices.enumerated() {
+            if device.uuid == DeviceManager.default.getActiveDevice().uuid {
+                withAnimation {
+                    offset = -CGFloat(index) * width
+                }
+            }
+        }
     }
 }
